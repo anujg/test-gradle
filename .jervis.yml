@@ -15,7 +15,7 @@ branches:
 
 trigger_cron_branch:
   - develop
-  - master
+  - release
 trigger_cron_expression: 'H/2 * * * *'
 
 jenkins:
