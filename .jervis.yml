@@ -19,4 +19,3 @@ trigger_cron_expression: '* * * * *'
 
 jenkins:
   pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
-
