@@ -13,13 +13,10 @@ branches:
     - develop
     - feature
 
+trigger_cron_branch:
+  - master
+trigger_cron_expression: '* * * * *'
+
 jenkins:
-  stash: 
-    allowEmpty: true
-    includes: 'foo'
-    name: 'artifacts' 
   pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
-  collect:
-    artifacts: 'target/*.jar'
-    junit: '**/*.xml'
 
