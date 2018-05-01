@@ -13,10 +13,10 @@ branches:
     - develop
     - feature
 
-trigger_cron_branch:
-  - develop
-  - release
-trigger_cron_expression: 'H/2 * * * *'
+#trigger_cron_branch:
+#  - develop
+#  - release
+#trigger_cron_expression: 'H/2 * * * *'
 
 jenkins:
   pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
