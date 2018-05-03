@@ -10,7 +10,6 @@ branches:
   only:
     - master
     - release
-    - develop
     - feature
 
 #trigger_cron_branch:
@@ -21,5 +20,5 @@ branches:
 script:
   - echo 'Trying dev script'
 
-jenkins:
-  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
+#jenkins:
+#  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
