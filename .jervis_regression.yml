@@ -8,12 +8,12 @@ language: shell
 
 branches:
   only:
-    - master
     - release
+    - develop
     - feature
 
 script:
-  - echo 'Trying dev script'
+  - echo 'Trying regression script'
 
 #trigger_cron_branch:
 #  - develop
