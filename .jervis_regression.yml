@@ -8,6 +8,7 @@ language: shell
 
 branches:
   only:
+    - master
     - release
     - develop
     - feature
