@@ -8,7 +8,6 @@ language: shell
 
 branches:
   only:
-    - master
     - release
     - develop
     - feature
@@ -17,9 +16,5 @@ branches:
 #  - develop
 #  - release
 #trigger_cron_expression: 'H/2 * * * *'
-
 script:
-  - echo 'Trying dev script'
-
-jenkins:
-  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
+  - echo 'Trying regression script'
