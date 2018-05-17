@@ -1,6 +1,9 @@
 #!groovy
 
 pipeline {
+    agent {
+        any
+    }
     stages{
         stage('register docker template') {
             steps {
