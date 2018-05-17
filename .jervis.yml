@@ -12,6 +12,10 @@ branches:
     - release
     - feature
 
+#docker-agents:
+#  - docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi:aesedi-8483-java8-maven-security
+#    labels: aes-java
+
 #trigger_cron_branch:
 #  - develop
 #  - release
@@ -20,5 +24,5 @@ branches:
 script:
   - echo 'Trying dev script'
 
-#jenkins:
-#  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
+jenkins:
+  pipeline_jenkinsfile: custom-jenkins-file

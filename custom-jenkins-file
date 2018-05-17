@@ -1,0 +1,54 @@
+#!groovy
+
+pipeline {
+    environment {
+            GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+            JERVIS_PLAYBOOK = aurea-central-jervis/ansible/jervis.yml
+            CHECKOUT_SCM = "Checkout scm"
+            DOCKER_IMAGE_BUILD_TAG = docker-image-build
+            SERVICE_DEPLOY_TAG = docker-service-deploy,ec2-instance,ec2-service-deploy
+            HEALTH_CHECK_TAG = run-health-checks
+            SMOKE_TEST_TAG = run-smoke-tests
+            REGRESSION_TEST_TAG = run-regression-tests
+            PERFORMANCE_TEST_TAG = run-performance-tests
+            LOAD_TEST_TAG = run-performance-tests
+            SECURITY_TEST_TAG = run-security-tests
+            PROMOTE_PACKAGE_TAG = promote-packages
+            SEND_NOTIFICATION_TAG = send-notification
+            K8S_SERVICE_DEPLOY_TAG = k8s-service-deploy
+            // deployment target environment
+            DEPLOYMENT_TARGET = env.DEPLOYMENT_TARGET ?: 'docker'
+    }
+    stages{
+        stage('register docker template') {
+            steps {
+                script {
+                    def template = [
+                        docker_image_name: "registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi:aesedi-8483-java8-maven-security",
+                        pull_strategy: "pull_latest",
+                        remote_fs_root: "/home/jenkins",
+                        labels: "stable docker ubuntu1604 sudo language:shell language:groovy language:java env jdk test-gradle",
+                        usage: "exclusive",
+                        launch_method: "launch_jnlp",
+                        launch_jnlp_linux_user: "jenkins",
+                        launch_jnlp_slave_jar_options: "-workDir /home/jenkins",
+                        launch_jnlp_lauch_timeout: 120,
+                        launch_jnlp_different_jenkins_master_url: "http://10.0.0.170:8080",
+                        launch_jnlp_ignore_certificate_check: false,
+                    ]
+                    registerDockerAgent(template)
+                 }
+            }
+        }
+        stage('Build project') {
+            agent {
+                label 'test-gradle'
+            }
+            steps {
+                script {
+                    sh './gradlew clean build'
+                }
+            }
+        }
+    }
+}
