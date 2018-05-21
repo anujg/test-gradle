@@ -2,7 +2,9 @@
 
 pipeline {
     environment {
-        SECRET1 = "New-secret"
+        withCredentials([string(credentialsId: 'SECRET1', variable: 'SECRET1')]) {
+            SECRET1 = "$SECRET1"
+        }
     }
     agent {label 'docker&&ubuntu1604&&language:java'}
     stages{
