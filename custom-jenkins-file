@@ -1,17 +1,14 @@
 #!groovy
 
 pipeline {
-    withCredentials([string(credentialsId: 'SECRET1', variable: 'SECRET1')]) {
-        environment {
-            SECRET1 = "$SECRET1"
-        }
-    }
     agent {label 'docker&&ubuntu1604&&language:java'}
     stages{
         stage('Build project') {
             steps {
                 script {
-                    sh './buildscripts/build.sh'
+                    withCredentials([string(credentialsId: 'SECRET1', variable: 'SECRET1')]) {
+                        sh './buildscripts/build.sh'
+                    }
                 }
             }
         }
