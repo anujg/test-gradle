@@ -8,12 +8,20 @@ language: shell
 
 branches:
   only:
-    - develop_<PROD_VERSION>
+    - regex
 
+docker-agents:
+  - docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi:aesedi-8483-java8-maven-security
+    labels: language:shell aes-java
 
 #trigger_cron_branch:
 #  - develop
 #  - release
 #trigger_cron_expression: 'H/2 * * * *'
+
 script:
-  - echo 'Trying regression script'
+  - echo 'CI Build'
+
+jenkins:
+  additional_labels: aes-java
+  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS

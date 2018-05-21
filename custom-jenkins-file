@@ -1,36 +1,15 @@
 #!groovy
 
 pipeline {
+    environment {
+        SECRET1 = "New-secret"
+    }
     agent {label 'docker&&ubuntu1604&&language:java'}
     stages{
-        stage('register docker template') {
-            steps {
-                script {
-                    def template = [
-                        docker_image_name: "registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi:aesedi-8483-java8-maven-security",
-                        pull_strategy: "PULL_LATEST",
-                        remote_fs_root: "/home/jenkins",
-                        labels: "stable docker ubuntu1604 sudo language:shell language:groovy language:java env jdk test-gradle",
-                        usage: "exclusive",
-                        network_mode: "bridge",
-                        launch_method: "launch_jnlp",
-                        launch_jnlp_linux_user: "jenkins",
-                        launch_jnlp_slave_jar_options: "-workDir /home/jenkins",
-                        launch_jnlp_lauch_timeout: 120,
-                        launch_jnlp_different_jenkins_master_url: "${JENKINS_URL}",
-                        launch_jnlp_ignore_certificate_check: false,
-                    ]
-                    registerDockerAgent(template)
-                 }
-            }
-        }
         stage('Build project') {
-            agent {
-                label 'test-gradle'
-            }
             steps {
                 script {
-                    sh './gradlew clean build'
+                    sh './buildscripts/build.sh'
                 }
             }
         }
