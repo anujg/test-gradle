@@ -7,7 +7,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'SECRET1', variable: 'SECRET1')]) {
+                    withCredentials([string(credentialsId: 'SECRET2', variable: 'SECRET2')]) {
                         sh './buildscripts/build.sh'
+                    }
                     }
                 }
             }
