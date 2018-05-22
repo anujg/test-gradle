@@ -28,4 +28,4 @@ jenkins:
   secrets:
     SECRET1: SECRET1
     SECRET2: SECRET2
-  pipeline_jenkinsfile: ./custom-jenkins-file
+  pipeline_jenkinsfile: custom-jenkins-file
