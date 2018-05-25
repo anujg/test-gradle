@@ -25,6 +25,7 @@ script:
   - echo 'Trying dev script'
 
 jenkins:
+  additional_labels: mykerio
   secrets:
     SECRET1: SECRET1
     SECRET2: SECRET2
