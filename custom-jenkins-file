@@ -1,5 +1,3 @@
-#!groovy
-
 pipeline {
     agent {label 'stable&&docker&&ubuntu1604&&sudo&&"language:java"&&env&&jdk&&mykerio'}
     stages{
