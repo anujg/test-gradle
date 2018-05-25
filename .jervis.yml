@@ -4,7 +4,7 @@
 # User guide and documentation can be found at: https://github.com/trilogy-group/aurea-central-jervis-example
 # This project is based on https://github.com/aurea-central-jervis-example/aurea-central-jervis
 
-language: shell
+language: java
 
 branches:
   only:
