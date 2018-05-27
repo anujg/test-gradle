@@ -4,7 +4,7 @@
 # User guide and documentation can be found at: https://github.com/trilogy-group/aurea-central-jervis-example
 # This project is based on https://github.com/aurea-central-jervis-example/aurea-central-jervis
 
-language: java
+language: shell
 
 branches:
   only:
@@ -12,9 +12,9 @@ branches:
     - release
     - feature
 
-#docker-agents:
-#  - docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi:aesedi-8483-java8-maven-security
-#    labels: language:shell aes-java
+docker-agents:
+  - docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi:aesedi-8483-java8-maven-security
+    labels: aes-java
 
 #trigger_cron_branch:
 #  - develop
@@ -25,8 +25,8 @@ script:
   - echo 'Trying dev script'
 
 jenkins:
-  additional_labels: mykerio
-  secrets:
-    SECRET1: MY_SECRET_1
-    SECRET2: SECRET2
-  pipeline_jenkinsfile: custom-jenkins-file
+  additional_labels: aes-java
+#  secrets:
+#    SECRET1: MY_SECRET_1
+#    SECRET2: SECRET2
+#  pipeline_jenkinsfile: custom-jenkins-file
