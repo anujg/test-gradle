@@ -23,10 +23,13 @@ branches:
 
 script:
   - echo 'Trying dev script'
+  - echo "Before"
+  - if [ ! -z "$SECRET1" ]; then echo "Got correct secret!"; fi
+  - echo "After"
 
-#jenkins:
+jenkins:
 #  additional_labels: aes-java
-#  secrets:
-#    SECRET1: MY_SECRET_1
-#    SECRET2: SECRET2
-#  pipeline_jenkinsfile: custom-jenkins-file
+  secrets:
+    SECRET1: MY_SECRET_1
+    SECRET2: SECRET2
+  pipeline_jenkinsfile: custom-jenkins-file
