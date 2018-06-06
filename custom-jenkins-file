@@ -1,4 +1,4 @@
-def label = 'stable&&docker&&ubuntu1604&&sudo&&"language:shell"&&env&&gradle'
+def label = 'stable&&docker&&ubuntu1604&&sudo&&"language:shell"&&env&&gradle1'
 podTemplate(label: label, containers: [
     containerTemplate(name: 'gradle', image: 'registry2.swarm.devfactory.com/aurea/central/jervis/sandbox-java:latest')
   ]) {
