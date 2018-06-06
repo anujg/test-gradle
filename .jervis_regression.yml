@@ -9,7 +9,6 @@ language: shell
 branches:
   only:
     - release
-    - develop
     - feature
 
 script:
