@@ -1,0 +1,10 @@
+pipeline {
+    agent {label 'stable&&docker&&ubuntu1604&&sudo&&"language:shell"&&env'}
+    stages{
+        stage('Build project') {
+            steps {
+                sh './buildscripts/build.sh'
+            }
+        }
+    }
+}
