@@ -1,15 +1,10 @@
-def label = 'stable&&docker&&ubuntu1604&&sudo&&"language:shell"&&env&&gradle1'
-podTemplate(label: label, containers: [
-    containerTemplate(name: 'gradle', image: 'registry2.swarm.devfactory.com/aurea/central/jervis/sandbox-java:latest')
-  ]) {
+def label = 'gradle1'
 
+podTemplate(label: label, cloud: 'kubernetes')
+{
     node(label) {
         stage('Build project') {
-            container('gradle') {
-                stage('Build a gradle project') {
-                    sh './buildscripts/build.sh'
-                }
-            }
+            sh './buildscripts/build.sh'
         }
     }
 }
