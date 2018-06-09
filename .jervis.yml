@@ -28,7 +28,7 @@ script:
   - echo "After"
 
 jenkins:
-  additional_labels: gradle
+  additional_labels: gradle1
   secrets:
     SECRET1: MY_SECRET_1
     SECRET2: SECRET2
