@@ -28,7 +28,7 @@ script:
 
 jenkins:
   additional_labels: aes-java
-#  secrets:
-#    SECRET1: MY_SECRET_1
-#    SECRET2: SECRET2
+  secrets:
+    SECRET1: MY_SECRET_1
+    SECRET2: SECRET2
   pipeline_jenkinsfile: custom-jenkins-file
