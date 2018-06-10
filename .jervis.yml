@@ -11,9 +11,9 @@ branches:
   only:
     - develop
 
-#docker-agents:
-#  - docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi:aesedi-8483-java8-maven-security
-#    labels: aes-java
+docker-agents:
+  - docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi:aesedi-8483-java8-maven-security
+    labels: aes-java
 
 #trigger_cron_branch:
 #  - develop
@@ -27,7 +27,7 @@ script:
   - echo "After"
 
 jenkins:
-#  additional_labels: gradle
+  additional_labels: aes-java
   secrets:
     SECRET1: MY_SECRET_1
     SECRET2: SECRET2
