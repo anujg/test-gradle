@@ -1,10 +1,10 @@
-def label = 'gradle1'
-
-podTemplate(label: label, cloud: 'kubernetes')
-{
-    node(label) {
+pipeline {
+    agent {label 'stable&&docker&&ubuntu1604&&sudo&&"language:shell"&&env'}
+    stages{
         stage('Build project') {
-            sh './buildscripts/build.sh'
+            steps {
+                sh './buildscripts/build.sh'
+            }
         }
     }
 }
