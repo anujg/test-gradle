@@ -6,15 +6,14 @@
 
 language: shell
 
+jervis_version: CFOT-151-Secrets-in-build-scripts
 
 branches:
   only:
     - develop
 
 docker-agents:
-  - cloud-name: docker-local
-    docker-url: tcp://localhost:2376
-    docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi:aesedi-8483-java8-maven-security
+  - docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi:aesedi-8483-java8-maven-security
     labels: aes-java
 
 #trigger_cron_branch:
