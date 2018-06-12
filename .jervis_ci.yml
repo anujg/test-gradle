@@ -6,6 +6,8 @@
 
 language: shell
 
+jervis_version: CFOT-399-k8s-docker-agents
+
 branches:
   only:
     - test-k8s
