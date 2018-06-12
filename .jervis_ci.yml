@@ -12,6 +12,12 @@ branches:
   only:
     - test-k8s
 
+docker-k8s-agents:
+  - template-name: aes-edi
+    docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi-java8-maven-security-rocker:latest
+    labels: aes-edi-java-rocker
+    remote-home-dir: /root
+
 #docker-agents:
 #  - docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi:aesedi-8483-java8-maven-security
 #    labels: language:shell aes-java
@@ -25,5 +31,5 @@ script:
   - echo 'CI Build'
 
 jenkins:
-  additional_labels: gradle1
-#  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
+  additional_labels: aes-edi-java-rocker
+  pipeline_jenkinsfile: custom-jenkins-file

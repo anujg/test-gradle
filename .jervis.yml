@@ -23,6 +23,13 @@ branches:
 #  - release
 #trigger_cron_expression: 'H/2 * * * *'
 
+docker-k8s-agents:
+  - template-name: aes-edi
+    docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi-java8-maven-security-rocker:latest
+    labels: aes-edi-java-rocker
+    remote-home-dir: /root
+
+
 script:
   - echo 'Trying dev script'
   - echo "Before"
@@ -30,7 +37,7 @@ script:
   - echo "After"
 
 jenkins:
-  additional_labels: gradle1
+  additional_labels: aes-edi-java-rocker
   secrets:
     SECRET1: MY_SECRET_1
     SECRET2: SECRET2
