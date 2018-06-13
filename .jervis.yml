@@ -6,7 +6,7 @@
 
 language: shell
 
-jervis_version: CFOT-151-Secrets-in-build-scripts
+jervis_version: latest-features
 
 branches:
   only:
