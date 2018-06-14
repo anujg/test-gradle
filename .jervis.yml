@@ -7,6 +7,8 @@
 language: shell
 
 jervis_version: latest-features
+variables:
+  - CENTRAL_JERVIS_BRANCH=OnPremise
 
 branches:
   only:
@@ -34,7 +36,7 @@ jenkins:
   secrets:
     SECRET1: MY_SECRET_1
     SECRET2: SECRET2
-  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
+  pipeline_jenkinsfile: aurea-central-jervis/pipelines/On-Premise
 
 notifications:
   email:
