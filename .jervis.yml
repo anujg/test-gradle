@@ -34,7 +34,7 @@ jenkins:
   secrets:
     SECRET1: MY_SECRET_1
     SECRET2: SECRET2
-  pipeline_jenkinsfile: aurea-central-jervis/pipelines/On-Premise
+  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
 
 notifications:
   email:
