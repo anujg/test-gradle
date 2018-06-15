@@ -5,6 +5,7 @@
 # This project is based on https://github.com/aurea-central-jervis-example/aurea-central-jervis
 
 language: shell
+jervis_version: CFOT-543
 variables:
   - CENTRAL_JERVIS_BRANCH=OnPremise
 
