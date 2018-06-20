@@ -8,7 +8,7 @@ language: shell
 jervis_version: feature/CFOT-303
 variables:
   - CENTRAL_JERVIS_BRANCH=feature/CFOT-303
-  - BUILD_DOCKER_IMAGE_LABEL='stable && docker && ubuntu1604 && sudo && language-shell && env && aes-edi-java-rocker'
+  - INTEGRATION_TEST_LABEL='stable && docker && ubuntu1604 && sudo && language-shell && env && aes-edi-java-rocker'
 
 branches:
   only:
@@ -37,6 +37,13 @@ jenkins:
     SECRET1: MY_SECRET_1
     SECRET2: SECRET2
   pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaSMultiStage
+
+services:
+  test-service:
+    integration-test:
+      - name: "Simulating {{ step_name }}"
+        debug: msg="Hello world from {{ step_name }}"
+
 
 notifications:
   email:
