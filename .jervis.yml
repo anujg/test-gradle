@@ -5,20 +5,10 @@
 # This project is based on https://github.com/aurea-central-jervis-example/aurea-central-jervis
 
 language: shell
-jervis_version: fix-for-repo-checkout
+jervis_version: feature/CFOT-303
 variables:
   - CENTRAL_JERVIS_BRANCH=feature/CFOT-303
-  - INTEGRATION_TEST_LABEL='stable && docker && ubuntu1604 && sudo && language-shell && env && aes-edi-java-rocker'
-
-repos:
-  - repo_id: aurea-aes-edi
-    repo_org_and_project: trilogy-group/aurea-aes-edi
-    branch: develop
-    checkout_at: repository/aes-edi
-  - repo_id: aurea-aes-edi-docker
-    repo_org_and_project: trilogy-group/aurea-eng-docker-aes-edi
-    branch: jervis-test
-    checkout_at: /tmp
+  - BUILD_DOCKER_IMAGE_LABEL='stable && docker && ubuntu1604 && sudo && language-shell && env && aes-edi-java-rocker'
 
 branches:
   only:
@@ -41,18 +31,18 @@ script:
   - if [ ! -z "$SECRET1" ]; then echo "Got correct secret!"; fi
   - echo "After"
 
-#jenkins:
-#  additional_labels: aes-edi-java-rocker
-#  secrets:
-#    SECRET1: MY_SECRET_1
-#    SECRET2: SECRET2
-#  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaSMultiStage
-#
-#services:
-#  test-service:
-#    integration-test:
-#      - name: "Simulating {{ step_name }}"
-#        debug: msg="Hello world from {{ step_name }}"
+jenkins:
+  additional_labels: aes-edi-java-rocker
+  secrets:
+    SECRET1: MY_SECRET_1
+    SECRET2: SECRET2
+  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaSMultiStage
+
+services:
+  test-service:
+    integration-test:
+      - name: "Simulating {{ step_name }}"
+        debug: msg="Hello world from {{ step_name }}"
 
 
 notifications:
