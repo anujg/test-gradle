@@ -32,8 +32,8 @@ services:
 jenkins:
   additional_labels: aes-edi-java-rocker
   stash:
-      name: 'artifacts'
-      allowEmpty: true
-    collect:
-      artifacts: 'test.txt'
+    name: 'artifacts'
+    allowEmpty: true
+  collect:
+    artifacts: 'test.txt'
   pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
