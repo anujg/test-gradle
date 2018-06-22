@@ -5,15 +5,28 @@
 # This project is based on https://github.com/aurea-central-jervis-example/aurea-central-jervis
 
 language: shell
+jervis_version: feature/CFOT-303
+variables:
+  - CENTRAL_JERVIS_BRANCH=CFOT-626
 
 branches:
   only:
-    - develop_<PROD_VERSION>
+    - /^qa.*$/
 
+script:
+  - echo 'Trying regression script'
+
+services:
+  ui-tests:
+    regression-test:
+      - name: RC Build Automated Tests. This test will run for ~3h, please be patient..
+        raw: echo 'ok'
+      - name: RC Build Automated Tests output
+        raw: echo 'RC tests running..'
 
 #trigger_cron_branch:
 #  - develop
-#  - release
 #trigger_cron_expression: 'H/2 * * * *'
-script:
-  - echo 'Trying regression script'
+
+jenkins:
+  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
