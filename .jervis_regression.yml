@@ -15,6 +15,7 @@ branches:
 
 script:
   - echo 'Trying regression script'
+  - touch 'test.txt'
 
 services:
   ui-tests:
@@ -29,4 +30,10 @@ services:
 #trigger_cron_expression: 'H/2 * * * *'
 
 jenkins:
+  additional_labels: aes-edi-java-rocker
+  stash:
+      name: 'artifacts'
+      allowEmpty: true
+    collect:
+      artifacts: 'test.txt'
   pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
