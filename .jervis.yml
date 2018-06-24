@@ -5,14 +5,13 @@
 # This project is based on https://github.com/aurea-central-jervis-example/aurea-central-jervis
 
 language: shell
-jervis_version: feature/CFOT-303
+
 variables:
-  - CENTRAL_JERVIS_BRANCH=feature/CFOT-303
   - BUILD_DOCKER_IMAGE_LABEL='stable && docker && ubuntu1604 && sudo && language-shell && env && aes-edi-java-rocker'
 
 branches:
   only:
-    - test
+    - /^qa.*$/
 
 docker-k8s-agents:
   - template-name: aes-edi
@@ -26,17 +25,16 @@ docker-k8s-agents:
 #trigger_cron_expression: 'H/2 * * * *'
 
 script:
-  - echo 'Trying dev script'
-  - echo "Before"
-  - if [ ! -z "$SECRET1" ]; then echo "Got correct secret!"; fi
-  - echo "After"
+  - touch test.txt
 
 jenkins:
   additional_labels: aes-edi-java-rocker
-  secrets:
-    SECRET1: MY_SECRET_1
-    SECRET2: SECRET2
-  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaSMultiStage
+  stash:
+      name: 'artifacts'
+      allowEmpty: true
+    collect:
+      artifacts: 'test.txt'
+  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
 
 services:
   test-service:
