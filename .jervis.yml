@@ -34,8 +34,8 @@ script:
 jenkins:
   additional_labels: aes-edi-java-rocker
   secrets:
-    SECRET1: MY_SECRET_1
-    SECRET2: SECRET2
+    SECRET1:MY_SECRET_1
+    SECRET2:SECRET2
 #  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaSMultiStage
 
 #services:
