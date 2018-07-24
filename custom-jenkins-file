@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'stable&&docker&&ubuntu1604&&sudo&&"language:shell"&&env'}
+    agent {label 'master'}
     stages{
         stage('Build project') {
             steps {
