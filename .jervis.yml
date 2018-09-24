@@ -11,7 +11,7 @@ jervis_version: separate-stages
 branches:
   only:
     - master
-    - release
+    - qa/1.0.0
     - feature
 
 #docker-agents:

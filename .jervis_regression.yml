@@ -11,7 +11,7 @@ variables:
 
 branches:
   only:
-    - /^qa.*$/
+    - future
 
 script:
   - echo 'Trying regression script'
