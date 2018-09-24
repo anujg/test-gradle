@@ -5,25 +5,38 @@
 # This project is based on https://github.com/aurea-central-jervis-example/aurea-central-jervis
 
 language: shell
-#jervis_version: influxdb-metrics
-#variables:
-#  - CENTRAL_JERVIS_BRANCH=feature/CFOT-303
-#  - BUILD_DOCKER_IMAGE_LABEL='stable && docker && ubuntu1604 && sudo && language-shell && env && aes-edi-java-rocker'
+
+jervis_version: separate-stages
 
 branches:
   only:
+    - master
     - develop
+    - feature
 
-docker-k8s-agents:
-  - template-name: aes-edi
-    docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi-java8-maven-security-rocker:latest
-    labels: aes-edi-java-rocker
-    remote-home-dir: /root
+#docker-agents:
+#  - docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi:aesedi-8483-java8-maven-security
+#    labels: aes-java
 
 #trigger_cron_branch:
 #  - develop
 #  - release
 #trigger_cron_expression: 'H/2 * * * *'
+
+#docker-k8s-agents:
+#  - template-name: aes-edi
+#    docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi-java8-maven-security-rocker:latest
+#    labels: aes-edi-java-rocker
+#    remote-home-dir: /root
+
+before_install:
+  - echo 'In before install section'
+
+install:
+  - echo 'In install section'
+
+before_script:
+  - echo 'In before script section'
 
 script:
   - echo 'Trying dev script'
@@ -32,22 +45,6 @@ script:
   - echo "After"
 
 jenkins:
-  additional_labels: aes-edi-java-rocker
   secrets:
-    SECRET1:MY_SECRET_1
-    SECRET2:SECRET2
-#  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaSMultiStage
-
-#services:
-#  test-service:
-#    integration-test:
-#      - name: "Simulating {{ step_name }}"
-#        debug: msg="Hello world from {{ step_name }}"
-
-
-notifications:
-  email:
-    recipients:
-      - to: anuj.gupta@aurea.com
-        on_success: always
-        on_failure: always
+    SECRET1: MY_SECRET_1
+    SECRET2: SECRET2
