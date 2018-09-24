@@ -11,7 +11,7 @@ jervis_version: separate-stages
 branches:
   only:
     - master
-    - qa/1.0.0
+    - develop
     - feature
 
 #docker-agents:
@@ -43,8 +43,9 @@ script:
   - echo "Before"
   - if [ ! -z "$SECRET1" ]; then echo "Got correct secret!"; fi
   - echo "After"
-
-#jenkins:
+#
+jenkins:
+  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
 #  secrets:
 #    SECRET1: MY_SECRET_1
 #    SECRET2: SECRET2
