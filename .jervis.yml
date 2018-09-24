@@ -6,46 +6,45 @@
 
 language: shell
 
-variables:
-  - BUILD_DOCKER_IMAGE_LABEL='stable && docker && ubuntu1604 && sudo && language-shell && env && aes-edi-java-rocker'
+jervis_version: separate-stages
 
 branches:
   only:
-    - /^qa.*$/
+    - master
+    - release
+    - feature
 
-docker-k8s-agents:
-  - template-name: aes-edi
-    docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi-java8-maven-security-rocker:latest
-    labels: aes-edi-java-rocker
-    remote-home-dir: /root
+#docker-agents:
+#  - docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi:aesedi-8483-java8-maven-security
+#    labels: aes-java
 
 #trigger_cron_branch:
 #  - develop
 #  - release
 #trigger_cron_expression: 'H/2 * * * *'
 
+#docker-k8s-agents:
+#  - template-name: aes-edi
+#    docker-image: registry2.swarm.devfactory.com/aurea/teamcity-linux/aes-edi-java8-maven-security-rocker:latest
+#    labels: aes-edi-java-rocker
+#    remote-home-dir: /root
+
+before_install:
+  - echo 'In before install section'
+
+install:
+  - echo 'In install section'
+
+before_script:
+  - echo 'In before script section'
+
 script:
-  - touch test.txt
+  - echo 'Trying dev script'
+  - echo "Before"
+  - if [ ! -z "$SECRET1" ]; then echo "Got correct secret!"; fi
+  - echo "After"
 
 jenkins:
-  additional_labels: aes-edi-java-rocker
-  stash:
-    name: 'artifacts'
-    allowEmpty: true
-  collect:
-    artifacts: 'test.txt'
-  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
-
-services:
-  test-service:
-    integration-test:
-      - name: "Simulating {{ step_name }}"
-        debug: msg="Hello world from {{ step_name }}"
-
-
-notifications:
-  email:
-    recipients:
-      - to: anuj.gupta@aurea.com
-        on_success: always
-        on_failure: always
+  secrets:
+    SECRET1: MY_SECRET_1
+    SECRET2: SECRET2
