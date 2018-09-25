@@ -43,6 +43,9 @@ script:
   - echo "Before"
   - if [ ! -z "$SECRET1" ]; then echo "Got correct secret!"; fi
   - echo "After"
+
+jenkins:
+  pipeline_jenkinsfile: aurea-central-jervis/pipelines/SaaS
 #
 #jenkins:
 #  secrets:
